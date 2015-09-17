@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css">
+    <script type="text/javascript" src="../public/javascripts/jquery/jquery-1.11.3.js"></script>
+
+    <script type="text/javascript">
+        function print() {
+            console.log('clicked');
+            var data = {urlAddress: $('#urlField').val()};
+            $('#download').attr("disabled", "disabled");
+            console.log(data);
+            $.ajax({
+                url: '/print',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    $('#download').removeAttr('disabled');
+                    var url = window.location.href + data.substring(2);
+                    //all pdfs saving at client's public package
+                    var button = '<a class="btn btn-default" href="' + url + '">Link to PDF</a>'
+                    $('#container').append(button);
+                },
+                error: function () {
+                    $('#download').removeAttr('disabled');
+                    alert('Problems on parsing web page...');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class='container container-table'>
+    <div class='row vertical-center-row'>
+        <h1></h1>
+    </div>
+    <div class='row vertical-center-row'>
+        <div class='text-center col-md-4 col-md-offset-4 form-group'>
+            <h2>URL address</h2>
+            <input class='form-control input-url-style' type='text' id='urlField' value='http://'>
+        </div>
+        <div class='text-center col-md-4 col-md-offset-4' id='container'>
+            <input class='btn btn-default' type='button' value='Download' id='download' onclick='print();'>
+        </div>
+    </div>
+</div>
+</body>
+</html>

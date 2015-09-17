@@ -1,0 +1,18 @@
+@import url('./bootstrap/bootstrap.css');
+
+html, body, .container-table {
+  height: 100%;
+}
+
+.container-table {
+  display: table;
+}
+
+.input-url-style {
+    width: 500px;
+}
+
+.vertical-center-row {
+  display: table-cell;
+  vertical-align: middle;
+}
