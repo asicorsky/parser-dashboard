@@ -14,7 +14,7 @@ router.post('/print', function (req, res, next) {
         req.body.urlAddress = 'https://almsaeedstudio.com/AdminLTE';
     }
     //if input data from UI is empty - use URL from the task
-    console.log(req.body.urlAddress);
+    console.log('URL: ' +req.body.urlAddress);
     phantom.create(function (ph) {
         ph.createPage(function (page) {
             page.open(req.body.urlAddress, function (status) {
