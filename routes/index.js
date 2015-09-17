@@ -10,6 +10,8 @@ router.get('/', function (req, res, next) {
 router.post('/print', function (req, res, next) {
     console.log('Process Started...');
     //if input data from UI is empty - use URL from the task
+    //needed web page using bootstrap on print functionality. In this cases phantom has some problems with parsing to pdf
+    //TODO: add logic on using bootstrap
     if (!req.body.urlAddress || req.body.urlAddress === 'http://' || req.body.urlAddress === 'https://') {
         req.body.urlAddress = 'https://almsaeedstudio.com/AdminLTE';
     }
